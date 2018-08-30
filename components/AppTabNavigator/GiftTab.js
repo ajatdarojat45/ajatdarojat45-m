@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Dimensions, Linking } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title, Card, CardItem, Content, Thumbnail, H1, H2, H3 } from 'native-base';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
@@ -14,7 +14,7 @@ class GiftTab extends React.Component {
    }
 
    componentDidMount = () => {
-      axios.get('https://ajatdarojat45.id/api/getGiftsActive')
+      axios.get('https://ajatdarojat45.id/api/mobile/getGiftsActive')
       .then((response) => {
          this.setState({
             gifts: response.data
@@ -62,9 +62,7 @@ class GiftTab extends React.Component {
                               >
                                {gift.name}
                             </Text>
-                            <ScrollView style={{ flex: 1}}>
-                                <HTML style={{color: '#636b6f'}} html={gift.content} imagesMaxWidth={Dimensions.get('window').width} />
-                            </ScrollView>
+                            <HTML html={gift.content} imagesMaxWidth={Dimensions.get('window').width} />
                            </Body>
                          </Left>
                        </CardItem>

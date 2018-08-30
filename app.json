@@ -1,5 +1,16 @@
 {
-  "expo": {
-    "sdkVersion": "27.0.0"
-  }
-}
+   "expo": {
+    "name": "Ajat Darojat - Blog",
+    "icon": "./assets/logo.png",
+    "version": "2.0.1",
+    "slug": "ajatdarojat45-blog",
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "bundleIdentifier": "com.lazyCode.ajatdarojat45"
+    },
+    "android": {
+      "package": "com.lazyCode.ajatdarojat45",
+      "versionCode": 2,
+    }
+   }
+ }

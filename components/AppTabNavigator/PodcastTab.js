@@ -20,7 +20,7 @@ class PodcastTab extends React.Component {
    }
 
    componentDidMount = () => {
-      axios.get('https://ajatdarojat45.id/api/getPodcastsActive')
+      axios.get('https://ajatdarojat45.id/api/mobile/getPodcastsActive')
       .then((response) => {
          this.setState({
             podcasts: response.data
@@ -38,7 +38,7 @@ class PodcastTab extends React.Component {
    }
 
    handlePodcastDetail(podcast){
-      axios.get('https://ajatdarojat45.id/api/getPodcast/'+podcast.slug)
+      axios.get('https://ajatdarojat45.id/api/mobile/getPodcast/'+podcast.slug)
       .then((response) => {
          this.setState({
             podcastDetail: !this.state.podcastDetail,
@@ -66,7 +66,7 @@ class PodcastTab extends React.Component {
          <Header>
             {this.state.podcastDetail ?
                <Left>
-                  <Icon name="ios-arrow-back" style={{paddingTop:10}} onPress={() => this.handleBack()}></Icon>
+                  <Icon name="md-arrow-back" style={{paddingTop:10}} onPress={() => this.handleBack()}></Icon>
                </Left>
                : null
             }
@@ -105,9 +105,7 @@ class PodcastTab extends React.Component {
                   )
                })
                :
-               <Container>
-                 <Content padder>
-                   <Card transparent>
+                <Card transparent>
                      <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
                         <View style={{alignItems: 'center'}}>
                            <Text style={{fontWeight: 'bold', fontSize: 25, paddingTop: 10, color: '#636b6f', alignItems: 'center'}}>{this.state.name}</Text>
@@ -134,8 +132,6 @@ class PodcastTab extends React.Component {
                        </Right>
                       </CardItem>
                    </Card>
-                 </Content>
-               </Container>
             }
          </Content>
       </Container>

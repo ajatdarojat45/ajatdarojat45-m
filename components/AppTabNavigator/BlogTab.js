@@ -19,7 +19,7 @@ class BlogTab extends React.Component {
    }
 
    componentDidMount = () => {
-      axios.get('https://ajatdarojat45.id/api/getBlogsActive')
+      axios.get('https://ajatdarojat45.id/api/mobile/getBlogsActive')
       .then((response) => {
          this.setState({
             blogs: response.data
@@ -37,7 +37,7 @@ class BlogTab extends React.Component {
    }
 
    handleBlogDetail(blog){
-      axios.get('https://ajatdarojat45.id/api/getBlog/'+blog.slug)
+      axios.get('https://ajatdarojat45.id/api/mobile/getBlog/'+blog.slug)
       .then((response) => {
          this.setState({
             blogDetail: !this.state.blogDetail,
@@ -64,7 +64,7 @@ class BlogTab extends React.Component {
          <Header>
             {this.state.blogDetail ?
                <Left>
-                  <Icon name="ios-arrow-back" style={{paddingTop:10}} onPress={() => this.handleBack()}></Icon>
+                  <Icon name="md-arrow-back" style={{paddingTop:10}} onPress={() => this.handleBack()}></Icon>
                </Left>
                : null
             }
@@ -105,34 +105,30 @@ class BlogTab extends React.Component {
                   )
                })
                :
-               <Container>
-                 <Content padder>
-                   <Card transparent>
-                     <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
-                        <View style={{alignItems: 'center'}}>
-                           <Text style={{fontWeight: 'bold', fontSize: 25, paddingTop: 10, color: '#636b6f', alignItems: 'center'}}>{this.state.title}</Text>
-                           <Text style={{alignItems: 'center'}}>{this.state.date}</Text>
-                        </View>
-                     </CardItem>
-                     <CardItem>
-                       <Body>
-                          <ScrollView style={{ flex: 1 }}>
-                              <HTML html={this.state.content} imagesMaxWidth={Dimensions.get('window').width} />
-                          </ScrollView>
-                       </Body>
-                     </CardItem>
-                     <CardItem>
-                       <Left>
-                           <Icon name="ios-eye-outline" style={{color: '#636b6f'}}/>
-                           <Text style={{color: '#636b6f'}}> {this.state.visitor} View</Text>
-                       </Left>
-                       <Right>
-                          <Text style={{color: '#636b6f'}}>{this.state.date.substr(0, 10)}</Text>
-                       </Right>
-                      </CardItem>
-                   </Card>
-                 </Content>
-               </Container>
+                <Card transparent>
+                  <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
+                     <View style={{alignItems: 'center'}}>
+                        <Text style={{fontWeight: 'bold', fontSize: 25, paddingTop: 10, color: '#636b6f', alignItems: 'center'}}>{this.state.title}</Text>
+                        <Text style={{alignItems: 'center'}}>{this.state.date}</Text>
+                     </View>
+                  </CardItem>
+                  <CardItem>
+                    <Body>
+                       <ScrollView style={{ flex: 1 }}>
+                           <HTML html={this.state.content} imagesMaxWidth={Dimensions.get('window').width} />
+                       </ScrollView>
+                    </Body>
+                  </CardItem>
+                  <CardItem>
+                    <Left>
+                        <Icon name="ios-eye-outline" style={{color: '#636b6f'}}/>
+                        <Text style={{color: '#636b6f'}}> {this.state.visitor} View</Text>
+                    </Left>
+                    <Right>
+                       <Text style={{color: '#636b6f'}}>{this.state.date.substr(0, 10)}</Text>
+                    </Right>
+                   </CardItem>
+                </Card>
             }
          </Content>
       </Container>

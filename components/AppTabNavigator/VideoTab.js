@@ -20,7 +20,7 @@ class VideoTab extends React.Component {
    }
 
    componentDidMount = () => {
-      axios.get('https://ajatdarojat45.id/api/getVideosActive')
+      axios.get('https://ajatdarojat45.id/api/mobile/getVideosActive')
       .then((response) => {
          this.setState({
             videos: response.data
@@ -38,7 +38,7 @@ class VideoTab extends React.Component {
    }
 
    handleVideoDetail(video){
-      axios.get('https://ajatdarojat45.id/api/getVideo/'+video.slug)
+      axios.get('https://ajatdarojat45.id/api/mobile/getVideo/'+video.slug)
       .then((response) => {
          this.setState({
             videoDetail: !this.state.videoDetail,
@@ -66,7 +66,7 @@ class VideoTab extends React.Component {
          <Header>
             {this.state.videoDetail ?
                <Left>
-                  <Icon name="ios-arrow-back" style={{paddingTop:10}} onPress={() => this.handleBack()}></Icon>
+                  <Icon name="md-arrow-back" style={{paddingTop:10}} onPress={() => this.handleBack()}></Icon>
                </Left>
                : null
             }
@@ -107,37 +107,29 @@ class VideoTab extends React.Component {
                   )
                })
                :
-               <Container>
-                 <Content padder>
-                   <Card transparent>
-                     <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
-                        <View style={{alignItems: 'center'}}>
-                           <Text style={{fontWeight: 'bold', fontSize: 25, paddingTop: 10, color: '#636b6f', alignItems: 'center'}}>{this.state.name}</Text>
-                           <Text style={{alignItems: 'center'}}>{this.state.date}</Text>
-                        </View>
-                     </CardItem>
-                     <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
-                       <Text>{this.state.description}</Text>
-                     </CardItem>
-                     <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
-                       <Body>
-                          <ScrollView style={{ flex: 1 }}>
-                              <HTML html={this.state.embed} imagesMaxWidth={Dimensions.get('window').width} />
-                          </ScrollView>
-                       </Body>
-                     </CardItem>
-                     <CardItem>
-                       <Left>
-                           <Icon name="ios-eye-outline" style={{color: '#636b6f'}}/>
-                           <Text style={{color: '#636b6f'}}> {this.state.visitor} View</Text>
-                       </Left>
-                       <Right>
-                          <Text style={{color: '#636b6f'}}>{this.state.date.substr(0, 10)}</Text>
-                       </Right>
-                      </CardItem>
-                   </Card>
-                 </Content>
-               </Container>
+                <Card transparent>
+                  <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
+                     <View style={{alignItems: 'center'}}>
+                        <Text style={{fontWeight: 'bold', fontSize: 25, paddingTop: 10, color: '#636b6f', alignItems: 'center'}}>{this.state.name}</Text>
+                        <Text style={{alignItems: 'center'}}>{this.state.date}</Text>
+                     </View>
+                  </CardItem>
+                  <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <HTML html={this.state.description} imagesMaxWidth={Dimensions.get('window').width} />
+                  </CardItem>
+                  <CardItem style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <HTML html={this.state.embed} imagesMaxWidth={Dimensions.get('window').width} />
+                  </CardItem>
+                  <CardItem>
+                    <Left>
+                        <Icon name="ios-eye-outline" style={{color: '#636b6f'}}/>
+                        <Text style={{color: '#636b6f'}}> {this.state.visitor} View</Text>
+                    </Left>
+                    <Right>
+                       <Text style={{color: '#636b6f'}}>{this.state.date.substr(0, 10)}</Text>
+                    </Right>
+                   </CardItem>
+                </Card>
             }
          </Content>
       </Container>

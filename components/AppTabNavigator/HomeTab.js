@@ -20,7 +20,7 @@ class HomeTab extends React.Component {
    }
 
    componentDidMount = () => {
-      axios.get('https://ajatdarojat45.id/api/getDisplayPictureActive')
+      axios.get('https://ajatdarojat45.id/api/mobile/getDisplayPictureActive')
       .then((response) => {
          this.setState({
             displayPicture: response.data.image
